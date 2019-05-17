@@ -15,6 +15,8 @@ public class OpenCsvSmall {
 
         long startTime = System.currentTimeMillis();
 
+
+
         OpenCSVWriter openCSVWriter = new OpenCSVWriter();
         OpenCSVReader openCSVReader = new OpenCSVReader();
 
