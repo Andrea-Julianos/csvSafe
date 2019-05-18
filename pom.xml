@@ -57,6 +57,16 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.8</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zhibei.utils</groupId>
+            <artifactId>EncodingDetect</artifactId>
+            <version>1.0</version>
+        </dependency>
 
 
     </dependencies>

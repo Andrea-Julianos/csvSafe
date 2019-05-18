@@ -2,8 +2,7 @@ package com.zhibei.csvSafe.function;
 
 import com.opencsv.CSVWriter;
 
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -22,10 +21,10 @@ public class OpenCSVWriter {
     private static CSVWriter csvWriter;
 
 
-    public OpenCSVWriter() {
+    public OpenCSVWriter(String fileEncode) {
         try {
 
-            writer = Files.newBufferedWriter(Paths.get(STRING_ARRAY_SAMPLE));
+            writer = new OutputStreamWriter(new FileOutputStream("G:/CSV/Testtraffic.csv"), fileEncode);
             csvWriter = new CSVWriter(writer,
                     CSVWriter.DEFAULT_SEPARATOR,
                     CSVWriter.NO_QUOTE_CHARACTER,
