@@ -3,6 +3,7 @@ package com.zhibei.csvSafe.function;
 import com.zhibei.otldb.api.EncryptApi;
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,7 @@ public class EncryptCsvLine {
      */
     public static void safeColumn(String[] header, List<String> columnNames) {
         //加密的列的序号数组
-        safeNum= new int[columnNames.size()];
+        safeNum = new int[columnNames.size()];
 
         System.out.println(safeNum.length);
 
@@ -45,18 +46,22 @@ public class EncryptCsvLine {
 
     }
 
-
-
-
     public static String[] encryptCsvreadLine(String[] csvReadLine) {
 
         String[] encryptCsvLine = csvReadLine;
-        for (int encryIdx : safeNum) {
-            String[] removeLine = ArrayUtils.remove(encryptCsvLine, encryIdx);
-            encryptCsvLine = ArrayUtils.insert(encryIdx, removeLine, EncryptApi.encrypt2(encryptCsvLine[encryIdx]));
-            System.out.println(Arrays.toString(encryptCsvLine));
-        }
+
+            for (int encryIdx : safeNum) {
+                String[] removeLine = ArrayUtils.remove(encryptCsvLine, encryIdx);
+
+
+                encryptCsvLine = ArrayUtils.insert(encryIdx, removeLine, EncryptApi.encrypt2(encryptCsvLine[encryIdx]));
+
+                System.out.println(Arrays.toString(encryptCsvLine));
+            }
+
         return encryptCsvLine;
 
     }
+
+
 }

@@ -39,7 +39,6 @@ public class OpenCSVWriter {
 
     public void writeHeader(String[] header) {
 
-
             csvWriter.writeNext(header);
     }
 

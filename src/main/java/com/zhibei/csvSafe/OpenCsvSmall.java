@@ -4,6 +4,7 @@ import com.common.ajax.EncodingDetect;
 import com.zhibei.csvSafe.function.EncryptCsvLine;
 import com.zhibei.csvSafe.function.OpenCSVReader;
 import com.zhibei.csvSafe.function.OpenCSVWriter;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -48,8 +49,6 @@ public class OpenCsvSmall {
             //加密
             String[] encryptLine = EncryptCsvLine.encryptCsvreadLine(csvLine);
 
-
-
             //逐行写入新的csv文件
             openCSVWriter.writeLine(encryptLine);
             count++;
@@ -67,8 +66,9 @@ public class OpenCsvSmall {
 
     @Test
     public void test5() {
-        String javaEncode = EncodingDetect.getJavaEncode("G:/CSV/testTraffic.csv");
+        String javaEncode = EncodingDetect.getJavaEncode("G:/CSV/testtraffic.csv");
         System.out.println(javaEncode);
+
     }
 
 }
