@@ -16,9 +16,6 @@ import java.util.Arrays;
 
 public class OpenCSVReader {
 
-    private static final String SAMPLE_CSV_FILE_PATH = "G:/CSV/traffic.csv";
-
-
     /**
      * header 可以 给予getter和setter方法
      */
@@ -32,12 +29,12 @@ public class OpenCSVReader {
 
 
 
-    public OpenCSVReader(String fileEncode) {
+    public OpenCSVReader(String fileEncode, String readPath) {
         try {
             // 使用BOMInputStream自动去除UTF-8中的BOM
            /* reader = new InputStreamReader(new BOMInputStream(new FileInputStream(SAMPLE_CSV_FILE_PATH)), "utf-8");*/
 
-            reader = new InputStreamReader(new FileInputStream(SAMPLE_CSV_FILE_PATH), fileEncode);
+            reader = new InputStreamReader(new FileInputStream(readPath), fileEncode);
             csvReader = new CSVReader(reader);
 
             //设置表头

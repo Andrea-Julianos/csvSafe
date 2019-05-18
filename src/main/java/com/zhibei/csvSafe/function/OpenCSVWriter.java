@@ -1,5 +1,6 @@
 package com.zhibei.csvSafe.function;
 
+import com.common.ajax.EncodingDetect;
 import com.opencsv.CSVWriter;
 
 import java.io.*;
@@ -10,10 +11,6 @@ import java.nio.file.Paths;
  * Created by rajeevkumarsingh on 25/09/17.
  */
 public class OpenCSVWriter {
-    private static final String STRING_ARRAY_SAMPLE = "G:/CSV/encryptTest.csv";
-//    private static final String OBJECT_LIST_SAMPLE = "./object-list-sample.csv";
-
-
 
 
     private static Writer writer;
@@ -21,17 +18,21 @@ public class OpenCSVWriter {
     private static CSVWriter csvWriter;
 
 
-    public OpenCSVWriter(String fileEncode) {
+    public OpenCSVWriter(String fileEncode, String writePath) {
         try {
 
-            writer = new OutputStreamWriter(new FileOutputStream("G:/CSV/Testtraffic.csv"), fileEncode);
+            //判断编码类型, 是GB2312 转为 GBK
+            final String  gB = "GB2312";
+            if (gB.equals(fileEncode)) {
+                fileEncode = "GBK";
+            }
+
+            writer = new OutputStreamWriter(new FileOutputStream(writePath), fileEncode);
             csvWriter = new CSVWriter(writer,
                     CSVWriter.DEFAULT_SEPARATOR,
                     CSVWriter.NO_QUOTE_CHARACTER,
                     CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                     CSVWriter.DEFAULT_LINE_END);
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

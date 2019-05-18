@@ -46,15 +46,17 @@ public class EncryptCsvLine {
 
     }
 
-    public static String[] encryptCsvreadLine(String[] csvReadLine) {
+    public static String[] encryptCsvreadLine(String[] csvReadLine) throws UnsupportedEncodingException {
 
         String[] encryptCsvLine = csvReadLine;
 
             for (int encryIdx : safeNum) {
                 String[] removeLine = ArrayUtils.remove(encryptCsvLine, encryIdx);
 
+/*                byte[] gb2312s = csvReadLine[encryIdx].getBytes("GB2312");
+                String test = new String(gb2312s, "GB2312");*/
 
-                encryptCsvLine = ArrayUtils.insert(encryIdx, removeLine, EncryptApi.encrypt2(encryptCsvLine[encryIdx]));
+                encryptCsvLine = ArrayUtils.insert(encryIdx, removeLine, EncryptApi.encrypt2(csvReadLine[encryIdx]));
 
                 System.out.println(Arrays.toString(encryptCsvLine));
             }

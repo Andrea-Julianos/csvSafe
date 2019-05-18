@@ -4,24 +4,29 @@ import com.common.ajax.EncodingDetect;
 import com.zhibei.csvSafe.function.EncryptCsvLine;
 import com.zhibei.csvSafe.function.OpenCSVReader;
 import com.zhibei.csvSafe.function.OpenCSVWriter;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class OpenCsvSmall {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
 
         long startTime = System.currentTimeMillis();
 
+        //获取文件路径
+        String readPath = "G:/CSV/read/traffic.csv";
+        String writePath = "G:/CSV/write/traffic.csv";
 
         //判断文件的类型
-        String fileEncode = EncodingDetect.getJavaEncode("G:/CSV/traffic.csv");
+        String fileEncode = EncodingDetect.getJavaEncode(readPath);
 
-        OpenCSVWriter openCSVWriter = new OpenCSVWriter(fileEncode);
-        OpenCSVReader openCSVReader = new OpenCSVReader(fileEncode);
+        System.out.println("文件类型" + fileEncode);
+
+        OpenCSVReader openCSVReader = new OpenCSVReader(fileEncode, readPath);
+        OpenCSVWriter openCSVWriter = new OpenCSVWriter(fileEncode, writePath);
 
         //读取表头
         String[] header = openCSVReader.getHeader();
@@ -33,7 +38,7 @@ public class OpenCsvSmall {
         //---------------------------------------
         ArrayList<String> file = new ArrayList<>();
         file.add("国家");
-        file.add("日期");
+//        file.add("日期");
         //---------------------------------------
 
         /*可接接口*/
@@ -59,16 +64,8 @@ public class OpenCsvSmall {
 
         System.out.println("总时间: " + (endTime - startTime) + "    条数: " + count);
 
-
-
     }
 
 
-    @Test
-    public void test5() {
-        String javaEncode = EncodingDetect.getJavaEncode("G:/CSV/testtraffic.csv");
-        System.out.println(javaEncode);
-
-    }
 
 }
